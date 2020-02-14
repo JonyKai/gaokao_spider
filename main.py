@@ -47,7 +47,7 @@ for year in tqdm.tqdm(range(2014, 2020, 1)):
             datas = result["data"]["item"]
             time.sleep(0.5)
             for data in datas:
-                if data["local_province_name"] == "四川":
+                if data["local_province_name"] == "四川":  # 之爬取各高校对四川省的分数线数据
                     # row.add_row((data["name"], str(year), data["province_id"], data["local_batch_name"], data["min"], data["average"]))
                     year_result[str(year)].append({"名称": data["name"],
                                                    "所在地区id":data["province_id"],
@@ -58,6 +58,5 @@ for year in tqdm.tqdm(range(2014, 2020, 1)):
             print("到达最后一页了！！")
             break
     filename = str(year)+'.json'
-    with open(filename, 'w', encoding="utf-8") as file_obj:
-        json.dump(year_result, file_obj, ensure_ascii=False,indent = 4)
-# print(row)
+    with open(filename, 'w', encoding="utf-8") as file_obj:  # 按照年份存储为json格式
+        json.dump(year_result, file_obj, ensure_ascii=False, indent = 4)
